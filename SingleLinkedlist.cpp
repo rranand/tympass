@@ -100,27 +100,50 @@ void sl::getpos() {
 int main()
 {
   sl ll;
-  ll.add();
-  ll.add();
-  ll.add();
-  ll.add();
-  ll.add();
-  ll.add();
-  ll.add();
-  
-  ll.display();
-
-  cout << "------------Removed Item-----------" << endl;
-  ll.del();
-  ll.display();
-  
-  cout << "------------Insert Item-----------" << endl;
-  ll.insert();
-  ll.display();
-  
-  cout << "------------Get Position-----------" << endl;
-  ll.getpos();
-
-
+  int count;
+  char check;
+  do {
+      switch (check) {
+        case 1:
+            cout << "Adding Elements in list: " << endl;
+            cout << "Enter number of Elements to be entered: ";
+            cin >> count;
+            for(int i=0;i<count;i++) {
+                ll.add();
+            }
+            break;
+        case 2:
+            cout << "Display Elements in list: " << endl;
+            ll.display();
+            break; 
+        case 3:
+            cout << "Deleting Elements in list: " << endl;
+            cout << "Number of Elements to be Deleted in list: ";
+            cin >> count;
+            for(int i=0;i<count;i++) {
+                ll.del();
+            }
+            break; 
+        case 4:
+            cout << "Inserting Elements in list: " << endl;
+            cout << "Number of Elements to be inserted in list: ";
+            cin >> count;
+            for(int i=0;i<count;i++) {
+                ll.insert();
+            }
+            break;
+        case 5:
+            cout << "Get position of Elements in list: " << endl;
+            ll.getpos();
+            break;
+        default:
+            cout << "Invalid Choice!!! \nTry Again!!!" << endl;
+      }
+      
+      cout << "If you want to exit enter N: ";
+      cin >> check; 
+      
+      
+  } while (check!="N");
   return 0;
 }
