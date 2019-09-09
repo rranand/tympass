@@ -66,7 +66,7 @@ void queue::getpos() {
     cin >> temp;
     for (int i=front+1;i <=rear;i++) {
         if (temp==arr[i]) {
-            cout << temp << " is found at " << i << " position." << endl;
+            cout << temp << " is found at " << i-1 << " position." << endl;
             break;
         }
     }
