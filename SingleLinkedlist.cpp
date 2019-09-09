@@ -144,9 +144,10 @@ int main()
             cout << "Invalid Choice!!! \nTry Again!!!" << endl;
       }
       
+      cout << "\n";
       cout << "If you want to exit enter N: ";
       cin >> check; 
-      
+      cout << "\n\n\n";
       
   } while (check!="N");
   
