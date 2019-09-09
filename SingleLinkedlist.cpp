@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 class node {
@@ -101,9 +102,11 @@ int main()
 {
   sl ll;
   int count;
-  char check;
+  string check;
   do {
-      switch (check) {
+      cout << "Enter 1 for Adding Elements\nEnter 2 for Displaying Elements\nEnter 3 for Deleting Elements\nEnter 4 for Inserting Elements\nEnter 5 for get position of Element\n";
+      cin >> count;
+      switch (count) {
         case 1:
             cout << "Adding Elements in list: " << endl;
             cout << "Enter number of Elements to be entered: ";
@@ -145,5 +148,6 @@ int main()
       
       
   } while (check!="N");
+  
   return 0;
 }
