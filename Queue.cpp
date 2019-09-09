@@ -16,7 +16,7 @@ class queue {
         
         void enqueue();
         void dequeue();
-        void check();
+        int check();
         void display();
 };
 
@@ -41,7 +41,7 @@ void queue::dequeue() {
     }
 };
 
-void queue::check() {
+int queue::check() {
     if (rear==max_size) {
         return 5;
     else if (front==-1) {
