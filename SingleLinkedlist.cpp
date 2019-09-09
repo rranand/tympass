@@ -105,6 +105,7 @@ int main()
   string check;
   do {
       cout << "Enter 1 for Adding Elements\nEnter 2 for Displaying Elements\nEnter 3 for Deleting Elements\nEnter 4 for Inserting Elements\nEnter 5 for get position of Element\n";
+      cout << "Enter your choice: ";
       cin >> count;
       switch (count) {
         case 1:
