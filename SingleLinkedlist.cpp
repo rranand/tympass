@@ -14,23 +14,35 @@ class sl {
             head=NULL;
         }
         
-        void add(node *);
+        node* create();
+        void add();
         void display();
-        void del(int);
-        void insert(int,node *);
-        void getpos(int);
+        void del();
+        void insert();
+        void getpos();
 };
 
+node* sl::create() {
+    
+    int temp;
+    cout << "Enter a number: " ;
+    cin >> temp;
+    node *new_node=new node();
+    new_node->data=temp;
+    new_node->next=NULL;
+    return new_node;
+};
 
-void sl::add(node *ele) {
+void sl::add() {
+    node *tempo=create();
     if (head==NULL) {
-        head=ele;
+        head=tempo;
     } else {
         node *cur=head;
         while (cur->next!=NULL) {
             cur=cur->next;
         }
-        cur->next=ele;
+        cur->next=tempo;
     }
 };
 
@@ -42,9 +54,12 @@ void sl::display() {
     }
 };
 
-void sl::del(int k) {
+void sl::del() {
     node *cur=head;
     node *prev=NULL;
+    int k;
+    cout << "Enter value which you want to delete: ";
+    cin >> k;
     while (cur->data!=k) {
         prev=cur;
         cur=cur->next;
@@ -53,16 +68,23 @@ void sl::del(int k) {
     delete cur;
 };
 
-void sl::insert(int pos,node *ele) {
+void sl::insert() {
+    node *tempo=create();
+    int pos;
+    cout << "Enter positon where you want to insert: ";
+    cin >> pos;
     node *cur=head;
     for (int i=1;i<pos-1;i++) {
         cur=cur->next;    
     }
-    ele->next=cur->next;
-    cur->next=ele;
+    tempo->next=cur->next;
+    cur->next=tempo;
 }
 
-void sl::getpos(int key) {
+void sl::getpos() {
+    int key;
+    cout << "Get position of key: ";
+    cin >> key;
     int i=0;
     node *cur=head;
     while (cur!=NULL) {
@@ -77,34 +99,17 @@ void sl::getpos(int key) {
 
 int main()
 {
-  node *head=new node();
-  node *e1=new node();
-  node *e2=new node();
-  node *e3=new node();
-  node *e4=new node();
-  node *e5=new node();
-  node *e6=new node();
-  node *e7=new node();
-  head->data=10;
-  e1->data=20;
-  e2->data=30;
-  e3->data=40;
-  e4->data=50;
-  e5->data=60;
-  e6->data=70;
-  e7->data=70;
-  
   sl ll;
-  ll.add(head);
-  ll.add(e1);
-  ll.add(e2);
-  ll.add(e3);
-  ll.add(e4);
-  ll.add(e5);
-  ll.add(e6);
+  ll.add();
+  ll.add();
+  ll.add();
+  ll.add();
+  ll.add();
+  ll.add();
+  ll.add();
   
   ll.display();
-  
+  /*
   cout << "------------Removed Item-----------" << endl;
   ll.del(50);
   ll.display();
@@ -114,7 +119,7 @@ int main()
   ll.display();
   
   cout << "------------Get Position-----------" << endl;
-  ll.getpos(40);
+  ll.getpos(40);*/
 
 
   return 0;
