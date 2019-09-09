@@ -49,7 +49,7 @@ void sl::add() {
 void sl::display() {
     node *cur=head;
     while (cur!=NULL) {
-        cout << cur->data << endl;
+        cout << "Elements in node: " << cur->data << endl;
         cur=cur->next;
     }
 };
@@ -83,7 +83,7 @@ void sl::insert() {
 
 void sl::getpos() {
     int key;
-    cout << "Get position of key: ";
+    cout << "Get position of node: ";
     cin >> key;
     int i=0;
     node *cur=head;
@@ -109,17 +109,17 @@ int main()
   ll.add();
   
   ll.display();
-  /*
+
   cout << "------------Removed Item-----------" << endl;
-  ll.del(50);
+  ll.del();
   ll.display();
   
   cout << "------------Insert Item-----------" << endl;
-  ll.insert(2,e7);
+  ll.insert();
   ll.display();
   
   cout << "------------Get Position-----------" << endl;
-  ll.getpos(40);*/
+  ll.getpos();
 
 
   return 0;
