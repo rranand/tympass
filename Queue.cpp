@@ -22,8 +22,7 @@ class queue {
 
 void queue::enqueue() {
     
-    cout << "Adding data in queue" << endl;
-    if (check()==5) {
+    if (check()==4) {
         cout << "Queue is full" << endl;
     } else {
         int temp;
@@ -36,20 +35,18 @@ void queue::enqueue() {
 
 void queue::dequeue() {
     
-    cout << "Removing data from queue" << endl;
-    if (check()==4) {
+    if (check()==5) {
         cout << "Queue is empty" << endl;
     } else {
-        front++;
-        arr[front]=0;
+        front=front+1;
     }
 };
 
 int queue::check() {
-    if (rear==max_size) {
+    if (rear==-1) {
         return 5;
     }
-    else if (front==-1) {
+    else if (rear==max_size) {
         return 4;
     }
     return 1;
@@ -67,8 +64,11 @@ int main()
     sl.enqueue();
     sl.enqueue();
     sl.enqueue();
-    sl.dequeue();
     sl.enqueue();
+    sl.display();
+    
+    cout << "\n------------------------\n" ;
+    sl.dequeue();
     sl.display();
     return 0;
 }
