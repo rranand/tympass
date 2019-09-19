@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-#define cust_size 2
+#define cust_size 20
 
 class queue {
 	public:
