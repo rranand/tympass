@@ -10,6 +10,7 @@ class queue {
 		int cust[cust_size];
 		string name[cust_size];	
 		int price[cust_size];
+		string cake[cust_size];
 		queue() {
 			
 			rear=-1;
@@ -43,10 +44,16 @@ void queue::enqueue() {
 		rear++;
 		cout << "Enter customer number: " ;
 		cin >> temp;
-		cout << "enter customer name: ";
-		cin >> c_name;
 		cust[rear]=temp;
+		cout << "Enter customer name: ";
+		cin >> c_name;
 		name[rear]=c_name;
+		cout << "Enter cake price: ";
+		cin >> temp;
+		price[rear]=temp;
+		cout << "Enter cake name: ";
+		cin >> c_name;
+		cake[rear]=c_name;
 	}
 }
 
@@ -70,6 +77,8 @@ void queue::display() {
 		for (int i=front+1;i<=rear;i++) {
 			cout << "Entered number: " << cust[i] << endl;
 			cout << "Customer name: " << name[i] << endl;
+			cout << "Cake price: " << price[i] << endl;
+			cout << "Cake name: " << cake[i] << endl;			
 		}
 	}
 }
