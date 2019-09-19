@@ -88,6 +88,11 @@ int main()
 
 	queue list;
 	int opt,count;
+	string cake_type[4];
+	cake_type[0]="Chocolate";
+	cake_type[1]="Vanilla";
+	cake_type[2]="Pineapple";
+	cake_type[3]="strawberry";
 	do {
 		
 		cout << "1 for adding element in queue \n2 for deleting element in queue \n3 for display element in queue \nEnter your choice: ";
