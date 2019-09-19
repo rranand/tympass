@@ -19,7 +19,6 @@ class queue {
 		
 		int check();
 		void enqueue();
-		void dequeue();
 		void display();
 };
 
@@ -42,7 +41,7 @@ void queue::enqueue() {
 		string c_name;
 		int temp;
 		rear++;
-		cout << "Enter customer number: " ;
+		cout << "Enter customer id: " ;
 		cin >> temp;
 		cust[rear]=temp;
 		cout << "Enter customer name: ";
@@ -57,17 +56,6 @@ void queue::enqueue() {
 	}
 }
 
-void queue::dequeue() {
-	
-	if (check()==4) {
-		
-		cout << "Queue is empty." << endl;
-	} 
-	
-	cout << "order cancellation not allowed!!!" << endl;
-	
-}
-
 void queue::display() {
 	
 	if (check()==4) {
@@ -75,7 +63,7 @@ void queue::display() {
 	} else {
 		
 		for (int i=front+1;i<=rear;i++) {
-			cout << "Entered number: " << cust[i] << endl;
+			cout << "Customer id: " << cust[i] << endl;
 			cout << "Customer name: " << name[i] << endl;
 			cout << "Cake price: " << price[i] << endl;
 			cout << "Cake name: " << cake[i] << endl;			
@@ -89,19 +77,23 @@ int main()
 	queue list;
 	int opt,count;
 	string cake_type[4];
-	cake_type[0]="Chocolate";
-	cake_type[1]="Vanilla";
-	cake_type[2]="Pineapple";
-	cake_type[3]="strawberry";
+	cake_type[0]="Chocolate - Rs 450";
+	cake_type[1]="Vanilla - Rs 100";
+	cake_type[2]="Pineapple - Rs 250";
+	cake_type[3]="strawberry - Rs 350";
 	do {
 		
-		cout << "1 for adding element in queue \n2 for deleting element in queue \n3 for display element in queue \nEnter your choice: ";
+		
+		cout << "1 for buying cake\n2 for Display customers details\nEnter your choice: ";
 		cin >> opt;
 		switch (opt) {
 			
 			case 1:
-				cout << "Adding element in queue:" << endl;
-				cout << "Enter number of elements to be entered: " ;
+				cout << "Buying Cake:" << endl;
+		        for (int i=0; i<4;i++) {
+		            cout << "** " << cake_type[i] << " **" << endl;
+		        }
+				cout << "Enter number of customers to be entered: " ;
 				cin >> count;
 				for (int i=1;i<=count ;i++) {
 					list.enqueue();
@@ -109,17 +101,10 @@ int main()
 				break;
 			
 			case 2:
-				cout << "Deleting element in queue:" << endl;
-				cout << "Enter number of elements to be deleted: ";
-				cin >> count ;
-				for (int i=1;i<=count ;i++) {
-					list.dequeue();
-				}
-				break;
-			case 3:
-				cout << "Display elements in queue:" << endl;
+				cout << "Display customers details:" << endl;
 				list.display();
 				break;
+				
 			default:
 				cout << "Enter valid option.....Try Again!!!" << endl;
 				
