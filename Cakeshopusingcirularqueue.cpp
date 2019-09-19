@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-#define cust_size 3
+#define cust_size 2
 
 class queue {
 	public:
@@ -14,12 +14,15 @@ class queue {
 		queue() {
 			
 			rear=-1;
+			front=-1;
 		};
+		
 		void enqueue();
 		void display();
 };
 
 void queue::enqueue() {
+        front++;
 		string c_name;
 		int temp;
 		rear++;
@@ -45,11 +48,12 @@ void queue::display() {
 		cout << "Queue is empty." << endl;
 	} else {
 		
-		for (int i=front+1;i<=rear;i++) {
+		for (int i=0;i<=rear || front>cust_size;i++) {
 			cout << "Customer id: " << cust[i] << endl;
 			cout << "Customer name: " << name[i] << endl;
 			cout << "Cake price: " << price[i] << endl;
-			cout << "Cake name: " << cake[i] << endl;			
+			cout << "Cake name: " << cake[i] << endl;
+			cout << "\n";
 		}
 	}
 }
@@ -64,19 +68,15 @@ int main()
 	cake_type[1]="Vanilla - Rs 100";
 	cake_type[2]="Pineapple - Rs 250";
 	cake_type[3]="strawberry - Rs 350";
-
 	do {
 		
 		
 		cout << "1 for buying cake\n2 for Display customers details\nEnter your choice: ";
 		cin >> opt;
-		cout << "\n";
-		
 		switch (opt) {
 			
 			case 1:
 				cout << "Buying Cake:" << endl;
-		        cout << "\n";
 		        for (int i=0; i<4;i++) {
 		            cout << "** " << cake_type[i] << " **" << endl;
 		        }
@@ -98,7 +98,7 @@ int main()
 				
 		}
 		
-		cout << "\n\n";
+		cout << "\n";
 		cout << "If you want to exit enter 4 else any num: ";
 		cin >> opt;
 		
