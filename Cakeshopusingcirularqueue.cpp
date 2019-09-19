@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 using namespace std;
-#define cust_size 100
+#define cust_size 3
 
 class queue {
 	public:
@@ -14,33 +14,16 @@ class queue {
 		queue() {
 			
 			rear=-1;
-			front=-1;
 		};
-		
-		int check();
 		void enqueue();
 		void display();
 };
 
-int queue::check() {
-	
-	if (rear==-1) {
-		return 4;
-	} else if (rear==cust_size) {
-		return 5;
-	}
-	
-	return 1;
-}
-
 void queue::enqueue() {
-	if (check()==5) {
-		
-		cout << "Queue is full." << endl;
-	} else {
 		string c_name;
 		int temp;
 		rear++;
+		rear=rear%cust_size;
 		cout << "Enter customer id: " ;
 		cin >> temp;
 		cust[rear]=temp;
@@ -53,12 +36,12 @@ void queue::enqueue() {
 		cout << "Enter cake name: ";
 		cin >> c_name;
 		cake[rear]=c_name;
-	}
+		cout << "\n";
 }
 
 void queue::display() {
 	
-	if (check()==4) {
+	if (rear==-1) {
 		cout << "Queue is empty." << endl;
 	} else {
 		
@@ -81,18 +64,23 @@ int main()
 	cake_type[1]="Vanilla - Rs 100";
 	cake_type[2]="Pineapple - Rs 250";
 	cake_type[3]="strawberry - Rs 350";
+
 	do {
 		
 		
 		cout << "1 for buying cake\n2 for Display customers details\nEnter your choice: ";
 		cin >> opt;
+		cout << "\n";
+		
 		switch (opt) {
 			
 			case 1:
 				cout << "Buying Cake:" << endl;
+		        cout << "\n";
 		        for (int i=0; i<4;i++) {
 		            cout << "** " << cake_type[i] << " **" << endl;
 		        }
+		        cout << "\n";
 				cout << "Enter number of customers to be entered: " ;
 				cin >> count;
 				for (int i=1;i<=count ;i++) {
@@ -110,7 +98,7 @@ int main()
 				
 		}
 		
-		cout << "\n\n\n";
+		cout << "\n\n";
 		cout << "If you want to exit enter 4 else any num: ";
 		cin >> opt;
 		
