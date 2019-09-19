@@ -48,7 +48,7 @@ void queue::display() {
 		cout << "Queue is empty." << endl;
 	} else {
 		
-		for (int i=0;i<=rear || front>cust_size;i++) {
+		for (int i=0;i<=rear || front>=cust_size;i++) {
 			cout << "Customer id: " << cust[i] << endl;
 			cout << "Customer name: " << name[i] << endl;
 			cout << "Cake price: " << price[i] << endl;
@@ -76,7 +76,8 @@ int main()
 		switch (opt) {
 			
 			case 1:
-				cout << "Buying Cake:" << endl;
+				cout << "\nBuying Cake:" << endl;
+				cout << "\n";
 		        for (int i=0; i<4;i++) {
 		            cout << "** " << cake_type[i] << " **" << endl;
 		        }
