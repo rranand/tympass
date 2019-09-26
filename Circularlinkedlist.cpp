@@ -9,9 +9,11 @@ class node {
 
 class queue {
     public:
-        node *head= new node();
+        node *rear= new node();
+        node *front= new node();
         queue() {
-            head=NULL;
+            rear=NULL;
+            front=NULL;
         }
         
         node* create();
@@ -20,3 +22,43 @@ class queue {
         void display();
         
 };
+
+node* queue::create() {
+    int num;
+    node *cur;
+    cout << "Enter a number: ";
+    cin >> num;
+    cur->data=num;
+    return cur;
+}
+
+void queue::enqueue() {
+    node *cur=create();
+    node *temp=rear;
+    if (rear==NULL && front==NULL) {
+        front=rear=cur;
+    } else {
+        while (temp->next!=NULL) {
+            temp=temp->next;
+        }
+        temp->next=cur;
+    }
+}
+
+void queue::dequeue() {
+    front=rear->next;
+}
+
+void queue::display() {
+    node *cur=front;
+    while (front!=NULL) {
+        cout << "Entered Number: " << front->data << endl;
+        front=front->next;
+    }
+}
+
+int main() {
+    
+    queue ll;
+    ll.
+    
