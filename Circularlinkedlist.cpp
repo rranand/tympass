@@ -9,8 +9,8 @@ class node {
 
 class queue {
     public:
-        node *rear= new node();
-        node *front= new node();
+        node *rear;
+        node *front;
         queue() {
             rear=NULL;
             front=NULL;
@@ -25,7 +25,7 @@ class queue {
 
 node* queue::create() {
     int num;
-    node *cur;
+    node *cur=new node();
     cout << "Enter a number: ";
     cin >> num;
     cur->data=num;
@@ -46,11 +46,19 @@ void queue::enqueue() {
 }
 
 void queue::dequeue() {
-    front=rear->next;
+    if (rear==NULL) {
+        cout << "Queue is empty\n";
+    } else {
+        front=rear->next;
+    }
+    
+    if (rear==front) {
+        rear==NULL;
+        front==NULL;
+    }
 }
 
 void queue::display() {
-    node *cur=front;
     while (front!=NULL) {
         cout << "Entered Number: " << front->data << endl;
         front=front->next;
@@ -60,13 +68,46 @@ void queue::display() {
 int main() {
     
     queue ll;
-    ll.enqueue();
-    ll.enqueue();
-    ll.enqueue();
-    ll.enqueue();
-    ll.display();
-    ll.dequeue();
-    ll.dequeue();
-    ll.display();
+    int i,count;
+    do {
+        
+        cout << "Enter 1 for Adding Elements\nEnter 2 for Removing Elements\nEnter 3 for displaying Elements\n\n";
+        cout << "Enter your choice: ";
+        cin >> i;
+        cout << "\n";
+        
+        switch (i) {
+            case 1:
+                cout << "Adding elements in queue: \n";
+                cout << "Enter number of elements to be stored: ";
+                cin >> count;
+                for (int j=0;j<count;j++) {
+                    ll.enqueue();
+                }
+                break;
+                
+            case 2:
+                cout << "Removing elements in queue: \n";
+                cout << "Enter number of elements to be deleted: ";
+                cin >> count;
+                for (int j=0;j<count;j++) {
+                    ll.dequeue();
+                }
+                break;
+                
+            case 3:
+                cout << "Displaying elements:\n";
+                ll.display();
+                break;
+                
+            default:
+                cout << "Invalid Option choosed.....Try again!!!\n\n";
+        }
+        
+            cout << "\nIf you want to exit, Press '0' else any to remain in the loop: ";
+            cin >> i;
+            
+    } while (i!=0);
+    
     return 0;
 }
