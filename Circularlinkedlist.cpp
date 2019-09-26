@@ -49,12 +49,7 @@ void queue::dequeue() {
     if (rear==NULL) {
         cout << "Queue is empty\n";
     } else {
-        front=rear->next;
-    }
-    
-    if (rear==front) {
-        rear==NULL;
-        front==NULL;
+        front=front->next;
     }
 }
 
@@ -71,7 +66,7 @@ int main() {
     int i,count;
     do {
         
-        cout << "Enter 1 for Adding Elements\nEnter 2 for Removing Elements\nEnter 3 for displaying Elements\n\n";
+        cout << "\nEnter 1 for Adding Elements\nEnter 2 for Removing Elements\nEnter 3 for displaying Elements\n\n";
         cout << "Enter your choice: ";
         cin >> i;
         cout << "\n";
@@ -111,3 +106,47 @@ int main() {
     
     return 0;
 }
+
+
+/*OUTPUT:
+
+
+Enter 1 for Adding Elements
+Enter 2 for Removing Elements
+Enter 3 for displaying Elements
+
+Enter your choice: 1
+
+Adding elements in queue: 
+Enter number of elements to be stored: 4
+Enter a number: 1
+Enter a number: 2
+Enter a number: 3
+Enter a number: 4
+
+If you want to exit, Press '0' else any to remain in the loop: 1
+
+Enter 1 for Adding Elements
+Enter 2 for Removing Elements
+Enter 3 for displaying Elements
+
+Enter your choice: 2
+
+Removing elements in queue: 
+Enter number of elements to be deleted: 2
+
+If you want to exit, Press '0' else any to remain in the loop: 1
+
+Enter 1 for Adding Elements
+Enter 2 for Removing Elements
+Enter 3 for displaying Elements
+
+Enter your choice: 3
+
+Displaying elements:
+Entered Number: 3
+Entered Number: 4
+
+If you want to exit, Press '0' else any to remain in the loop: 0
+
+*/
