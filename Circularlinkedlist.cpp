@@ -46,11 +46,14 @@ void queue::enqueue() {
 }
 
 void queue::dequeue() {
+    node *temp=front;
     if (rear==NULL) {
         cout << "Queue is empty\n";
     } else {
+        temp=front;
         front=front->next;
     }
+    delete temp;
 }
 
 void queue::display() {
