@@ -60,5 +60,13 @@ void queue::display() {
 int main() {
     
     queue ll;
-    ll.
-    
+    ll.enqueue();
+    ll.enqueue();
+    ll.enqueue();
+    ll.enqueue();
+    ll.display();
+    ll.dequeue();
+    ll.dequeue();
+    ll.display();
+    return 0;
+}
