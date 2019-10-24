@@ -26,17 +26,24 @@ class Wrecord {
 
 student* Wrecord::create() {
     student *cur=new student();
+    char sname[50];
+    int sid,sssc,shsc,scet;
 	cout << "Enter Student's name: ";
-    cin >> cur->name;
+    cin >> sname;
+    cur->name=sname;
     cout << "Enter registeration id: ";
-    cin >> cur->id;
+    cin >> sid;
+    cur->id=sid;
     cout << "Enter Student's SSC marks: ";
-    cin >> cur->ssc;
+    cin >> sssc;
+    cur->ssc=sssc;
     cout << "Enter Student's HSC marks: ";
-    cin >> cur->hsc;
+    cin >> shsc;
+    cur->hsc=shsc;
     cout << "Enter Student's CET marks: ";
-    cin >> cur->cet;
-    cur->avg=(cur->ssc+cur->hsc+cur->cet)/3;
+    cin >> scet;
+    cur->cet=scet;
+    cur->avg=(sssc+shsc+scet)/3;
 	return cur;
 };
 
