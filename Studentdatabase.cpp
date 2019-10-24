@@ -20,17 +20,15 @@ class Wrecord {
         }
         
         student* create();
-        student* insert();
+        void insert();
 };
 
 
 student* Wrecord::create() {
     student *cur=new student();
-    char sname[50];
     int sid,sssc,shsc,scet;
 	cout << "Enter Student's name: ";
-    cin >> sname;
-    cur->name=sname;
+    cin >> cur->name;
     cout << "Enter registeration id: ";
     cin >> sid;
     cur->id=sid;
@@ -44,21 +42,21 @@ student* Wrecord::create() {
     cin >> scet;
     cur->cet=scet;
     cur->avg=(sssc+shsc+scet)/3;
-	return cur;
 };
 
-student* Wrecord::insert() {
+void Wrecord::insert() {
     student *temp=create();
     student *cur=head;
     if (head=NULL) {
         head=temp;
     } else {
         while (cur->next!=NULL) {
+            cout << 2 << endl;
             cur=cur->next;
         }
+        cout << 3 << endl;
         cur->next=temp;
     }
-    return temp;
 }
     
     
@@ -115,7 +113,8 @@ int main() {
             case 1:
                 do {
                     cout << "Inserting Student list:\n";
-                    student *cur=ll.insert();
+                    ll.insert();
+                    student *cur=NULL;
                     
                     if (cur->avg>=90) {
                         cout << "Congratulation.. you got CS." << endl;
