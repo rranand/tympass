@@ -1,36 +1,35 @@
-#include<iostream>
-#include<stdio.h>
-#include<string.h>
-using namespace std;
+#include<iostream>                                              //Importing input-output library
+#include<string.h>                                              //Importing string library
+using namespace std;                                            //Importing standard functions from input-output library
 
-class node {
-	public:
-    	char number[11];
-    	char name[30];
-    	node* left=NULL;
-    	node* right=NULL;
+class node {                                                    //Defining class
+	public:                                                     //Access Specifier
+    	char number[11];                                        //Declaring a variable
+    	char name[30];                                          //Declaring a variable
+    	node* left=NULL;                                        //Creating a null object
+    	node* right=NULL;                                       //Creating a null object
 };
 
-class tree {
-	public:
-    	node *root=new node();
-    	tree() {
-        	root=NULL;
+class tree {                                                    //Creating a class
+	public:                                                     //Access specifier
+    	node *root=new node();                                  //Creating an object
+    	tree() {                                                //Constructor
+        	root=NULL;                                          //Storing null in object
     	}
    	 
-    	node* create();
-    	void insert();
-    	void display(node*);
-    	void del();
-    	void search();
-    	void min();
+    	node* create();                                         //Creating a function to create object which returns object
+    	void insert();                                          //Creating a function to insert elements
+    	void display(node*);                                    //Creating a function to display elements having a parameter which takes object
+    	void del();                                             //Creating a function to delete elements
+    	void search();                                          //Creating a function to search instance
+    	void min();                                             //Creating a function to find the minimum elements
    	 
-    	node* pass() {
-        	return root;
+    	node* pass() {                                         //Creating a function to return first object i.e. root
+        	return root;                                       //Returing root
     	};
 };
 
-node* tree::create() {
+node* tree::create() {                                          //Declaring an inclass function using scope resolution outside the class
 	node *temp=new node();
 	cout << "Enter Name: ";
 	cin >> temp->name;
@@ -176,16 +175,13 @@ int main() {
 }
 
 /*
-
 OUTPUT:
-
 1.Insert
 2.Display
 3.Delete
 4.Search
 5.Minimum
 Enter option: 1
-
 Enter Elements to be inserted: 3
 Enter Name: Rohit
 Enter mobile number: 123
@@ -194,7 +190,6 @@ Enter mobile number: 456
 Enter Name: Sonu
 Enter mobile number: 789
 If you want to exit, enter 0 else any integer: 1
-
 1.Insert
 2.Display
 3.Delete
@@ -208,7 +203,5 @@ Number: 123
 Name: Sonu
 Number: 789
 If you want to exit, enter 0 else any integer: 0
-
 Thank You!!!
-
 */
