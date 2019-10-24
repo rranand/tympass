@@ -20,13 +20,9 @@ class Wrecord {
         }
         
         student* create();
-        void insert();
-        student* pass();
+        student* insert();
 };
 
-student* Wrecord::pass(student *cur) {
-    return cur;
-}
 
 student* Wrecord::create() {
     student *cur=new student();
@@ -44,7 +40,7 @@ student* Wrecord::create() {
 	return cur;
 };
 
-void Wrecord::insert() {
+student* Wrecord::insert() {
     student *temp=create();
     student *cur=head;
     if (head=NULL) {
@@ -55,7 +51,7 @@ void Wrecord::insert() {
         }
         cur->next=temp;
     }
-    
+    return temp;
 }
     
     
@@ -112,8 +108,7 @@ int main() {
             case 1:
                 do {
                     cout << "Inserting Student list:\n";
-                    ll.insert();
-                    student *cur=ll.pass();
+                    student *cur=ll.insert();
                     
                     if (cur->avg>=90) {
                         cout << "Congratulation.. you got CS." << endl;
