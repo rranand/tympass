@@ -15,16 +15,21 @@ class student {
 class Wrecord {
     public:
         student *head=new student();
-        record() {
+        Wrecord() {
             head=NULL;
         }
         
         student* create();
         void insert();
+        student* pass();
 };
 
+student* Wrecord::pass(student *cur) {
+    return cur;
+}
+
 student* Wrecord::create() {
-    student *cur=new node();
+    student *cur=new student();
 	cout << "Enter Student's name: ";
     cin >> cur->name;
     cout << "Enter registeration id: ";
@@ -36,7 +41,7 @@ student* Wrecord::create() {
     cout << "Enter Student's CET marks: ";
     cin >> cur->cet;
     cur->avg=(cur->ssc+cur->hsc+cur->cet)/3;
-	return temp;
+	return cur;
 };
 
 void Wrecord::insert() {
@@ -50,26 +55,24 @@ void Wrecord::insert() {
         }
         cur->next=temp;
     }
-    student* pass() {
-        return temp;
-    };
+    
 }
     
     
 
 class department {
     public:
-        student *Dstudent=new node();
-        record() {
+        student *Dstudent=new student();
+        department() {
             Dstudent=NULL;
         }
         
         void add(student *);
-        void search();
+        void search(int);
 };
 
 void department::add(student *temp) {
-    node *cur=Dstudent;
+    student *cur=Dstudent;
     if (Dstudent==NULL) {
         Dstudent=temp;
     } else {
@@ -110,7 +113,7 @@ int main() {
                 do {
                     cout << "Inserting Student list:\n";
                     ll.insert();
-                    node *cur=ll.pass();
+                    student *cur=ll.pass();
                     
                     if (cur->avg>=90) {
                         cout << "Congratulation.. you got CS." << endl;
