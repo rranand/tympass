@@ -8,13 +8,12 @@ class student {
         int ssc;
         int hsc;
         int cet;
-        int avg;
-        student *next=NULL;
+        student* next=NULL;
 };
 
 class Wrecord {
     public:
-        student *head=new student();
+        student *head;
         Wrecord() {
             head=NULL;
         }
@@ -25,45 +24,37 @@ class Wrecord {
 
 
 student* Wrecord::create() {
-    student *cur=new student();
-    int sid,sssc,shsc,scet;
+    student *temp=new student();
 	cout << "Enter Student's name: ";
-    cin >> cur->name;
+    cin >> temp->name;
     cout << "Enter registeration id: ";
-    cin >> sid;
-    cur->id=sid;
+    cin >> temp->id;
     cout << "Enter Student's SSC marks: ";
-    cin >> sssc;
-    cur->ssc=sssc;
+    cin >> temp->ssc;
     cout << "Enter Student's HSC marks: ";
-    cin >> shsc;
-    cur->hsc=shsc;
+    cin >> temp->hsc;
     cout << "Enter Student's CET marks: ";
-    cin >> scet;
-    cur->cet=scet;
-    cur->avg=(sssc+shsc+scet)/3;
+    cin >> temp->cet;
+    return temp;
 };
 
 void Wrecord::insert() {
     student *temp=create();
     student *cur=head;
-    if (head=NULL) {
+    if (head==NULL) {
         head=temp;
     } else {
         while (cur->next!=NULL) {
-            cout << 2 << endl;
             cur=cur->next;
         }
-        cout << 3 << endl;
         cur->next=temp;
     }
-}
-    
+};
     
 
 class department {
     public:
-        student *Dstudent=new student();
+        student *Dstudent;
         department() {
             Dstudent=NULL;
         }
@@ -104,7 +95,7 @@ int main() {
     
     department mech,etx,comp;
     Wrecord ll;
-    int key,check,opt;
+    int key,check,opt,avg;
     
     do {
         cout << "\n1.Enter Student data\n2.Search\nEnter your choice: ";
@@ -116,14 +107,15 @@ int main() {
                     ll.insert();
                     student *cur=NULL;
                     
-                    if (cur->avg>=90) {
+                    avg=(cur->ssc+cur->hsc+cur->cet)/3;
+                    if (avg>=90) {
                         cout << "Congratulation.. you got CS." << endl;
                         comp.add(cur);
-                    } else if (cur->avg <90 and cur->avg >=80) {
+                    } else if (avg <90 and avg >=80) {
                         cout << "Congratulation.. you got ETX." << endl;
                         etx.add(cur);
                     }
-                    else if (cur->avg <80 and cur->avg >=70) {
+                    else if (avg <80 and avg >=70) {
                         cout << "Congratulation.. you got MECH." << endl;
                         mech.add(cur);
                     }
