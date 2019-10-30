@@ -235,6 +235,7 @@ OUTPUT:
 4.Search
 5.Minimum
 Enter option: 1
+
 Enter Elements to be inserted: 3
 Enter Name: Rohit
 Enter mobile number: 123
@@ -243,6 +244,7 @@ Enter mobile number: 456
 Enter Name: Sonu
 Enter mobile number: 789
 If you want to exit, enter 0 else any integer: 1
+
 1.Insert
 2.Display
 3.Delete
@@ -255,6 +257,32 @@ Name: Rohit
 Number: 123
 Name: Sonu
 Number: 789
+If you want to exit, enter 0 else any integer: 4
+
+1.Insert
+2.Display
+3.Delete
+4.Search
+5.Minimum
+Enter option: 4
+Enter name to searched: 
+Anand
+Name found at this position: 1
+Name: Anand
+Number: 456
+If you want to exit, enter 0 else any integer: 5
+
+1.Insert
+2.Display
+3.Delete
+4.Search
+5.Minimum
+Enter option: 5
+Minimum: 
+Name: Anand
+Number: 456
 If you want to exit, enter 0 else any integer: 0
+
 Thank You!!!
+ 
 */
