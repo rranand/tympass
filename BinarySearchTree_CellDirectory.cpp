@@ -1,3 +1,4 @@
+  
 #include<iostream>                                              //Importing input-output library
 #include<string.h>                                              //Importing string library
 using namespace std;                                            //Importing standard functions from input-output library
@@ -30,40 +31,47 @@ class tree {                                                    //Creating a cla
 };
 
 node* tree::create() {                                          //Declaring an inclass function using scope resolution outside the class
-	node *temp=new node();
-	cout << "Enter Name: ";
-	cin >> temp->name;
-	cout << "Enter mobile number: ";
-	cin >> temp->number;
-	return temp;
+	node *temp=new node();										//Creating a new node
+	cout << "Enter Name: ";										//printing
+	cin >> temp->name;											//Storing user input in object's variable called name
+	cout << "Enter mobile number: ";							//printing
+	cin >> temp->number;										//Storing user input in object's variable
+	return temp;												//Returing object
 }
 
-void tree::insert() {
-	node *temp=create();
-	node *cur=root;
-	if (root==NULL) {
-    	root=temp;
+void tree::insert() {											//Declaring an inclass function using scope resolution outside the class
+	node *temp=create();										//Creating an object with required inputs from the user
+	node *cur=root;												//Assigning root node in cur node
+	if (root==NULL) {											//Checking if root is null or empty
+    	root=temp;												//if null then, storing temp node in root else
 	} else {
-    	while (temp!=NULL) {
-        	if (strcmp(temp->name,cur->name)<0) {
-            	if (root->left==NULL) {
-                	root->left=temp;
-                	temp=NULL;
-            	} else {
-                	root=root->left;   
+    	while (temp!=NULL) {									//Checking for the null nodes in all objects
+        	if (strcmp(temp->name,cur->name)<0) {				//comparing string and checking if it less than zero if less
+            	if (root->left==NULL) {							//Checking for if root object has empty left node if found
+                	root->left=temp;							//Storing temp in the left node of temp object
+                	temp=NULL;									//Stroing null in the temp
+            	} else {										//if above condition is not satsified
+                	root=root->left;   							//Storing left node in the root from the root object
             	}
         	} else {
-            	if (root->right==NULL) {
-                	root->right=temp;
-                	temp=NULL;
+            	if (root->right==NULL) {						//Checking for if root object has empty right node if found
+                	root->right=temp;							//Storing temp in the right node of temp object
+                	temp=NULL;									//Stroing null in the temp
             	} else {
-                	root=root->right;	 
+                	root=root->right;	    					//Storing left node in the root from the root object
             	}
         	}
     	}
 	}
 }
 
+/*
+
+In below function, we will display all elements stored in the root here we will pass a pointer node here
+Firstly, Checking if the node is null or not if null, then run the below statements.
+Calling the display function recursively for the left nodes to print left node afterwards it will print the stored elements and similarly it will do for right nodes
+
+*/
 void tree::display(node* cur) {
 	if (cur!=NULL) {
     	display(cur->left);
@@ -72,6 +80,14 @@ void tree::display(node* cur) {
     	display(cur->right);
 	}   
 }
+
+/*
+In below function, we will search desire element stored in the root 
+For counting its position variable 'c' is created and what to be search will store in the variable call 's_name'
+Afterwards, storing the root in the pointer 'cur' variable
+Now, searching for the key until the nodes reach to last one node by using while loop
+In if condition we are comparing key with the names stored in the instances of the object if no difference is found, will print the position at which name was found as well as its name and number will exit from the loop
+*/
 
 void tree::search() {
 	int c=0;
@@ -82,6 +98,8 @@ void tree::search() {
 	while (cur!=NULL) {
     	if (strcmp(s_name,cur->name)==0) {
         	cout << "Name found at this position: " << c << endl;
+			cout << "Name: " << cur->name << endl;
+			cout << "Number: " << cur->number << endl;
         	return;
     	} else if (strcmp(s_name,cur->name)<0) {
         	cur=cur->left;
@@ -89,9 +107,13 @@ void tree::search() {
         	cur=cur->right;
     	}   
 	}
-c++;
+	c++;
 	cout << "Name not found in the directory" << endl;
 }
+
+/*
+
+*/
 
 void tree::del() {
 	node *temp;
@@ -123,6 +145,14 @@ void tree::del() {
     	}
 	}
 }
+
+/*
+In below function, we will find minimum of all element stored in the root 
+storing the root in the pointer 'cur' variable
+Now, transversing for the last key until the nodes reach to last one node by using while loop
+Stroing the left node in the 'cur' variable as lower value store in the left
+Finally print the stored values in the elements
+*/
 
 void tree::min() {
 	node *cur=root;
