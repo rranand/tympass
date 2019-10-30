@@ -112,7 +112,12 @@ void tree::search() {
 }
 
 /*
-
+In below function, we will delete desire element stored in the root 
+what to be deleted will store in the variable call 'dele' and get input from the user
+Afterwards, storing the root in the pointer 'cur' variable
+Now, searching for the key until the nodes reach to last one node by using while loop
+It will compare for the element to be deleted with all names stored in the directory 
+Afterwards, it will delete the object by storing it in the temp variable.
 */
 
 void tree::del() {
@@ -138,7 +143,7 @@ void tree::del() {
         	temp=cur;
         	delete temp;
         	cur=cur->right;
-        	} else if (cur->right==NULL) {
+        } else if (cur->right==NULL) {
         	temp=cur;
         	delete temp;
         	cur=cur->left;
@@ -164,10 +169,14 @@ void tree::min() {
 	cout << "Number: " << cur->number << endl;
 }    
 
+/*
+First, we created an object of tree and several variables to store different inputs
+By using switch statement, we get input from the user what he or she want to do 
+*/
 int main() {
 	tree ll;
-	int m,opt,check=1;
-	while (check!=0) {
+	int m,opt,check;
+	do {
     	cout << "\n1.Insert\n2.Display\n3.Delete\n4.Search\n5.Minimum\nEnter option: ";
     	cin >> opt;
     	switch(opt) {
@@ -199,7 +208,7 @@ int main() {
     	}
     	cout << "If you want to exit, enter 0 else any integer: ";
     	cin >> check;
-	}
+	} while (check!=0);
 	cout << "\nThank You!!!\n";
 	return 0;    
 }
