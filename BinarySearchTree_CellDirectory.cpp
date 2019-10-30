@@ -78,7 +78,7 @@ void tree::display(node* cur) {
     	cout << "Name: " << cur->name << endl;
     	cout << "Number: " << cur->number << endl;
     	display(cur->right);
-	}   
+	}
 }
 
 /*
@@ -106,8 +106,8 @@ void tree::search() {
     	} else {
         	cur=cur->right;
     	}   
+    	c++;
 	}
-	c++;
 	cout << "Name not found in the directory" << endl;
 }
 
@@ -161,7 +161,7 @@ Finally print the stored values in the elements
 
 void tree::min() {
 	node *cur=root;
-	while (cur!=NULL) {
+	while (cur->left!=NULL) {
     	cur=cur->left;
 	}
 	cout << "Minimum: " << endl;
