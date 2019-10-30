@@ -127,6 +127,19 @@ void tree::del() {
 	cin >> dele;
 	node *cur=root;
 	while (cur!=NULL) {
+    	if (strcmp(dele,cur->name)==0) {
+    	    temp=cur;
+        	delete temp;
+        	return;
+    	} else if (strcmp(dele,cur->name)<0) {
+        	cur=cur->left;
+    	} else {
+        	cur=cur->right;
+    	}   
+	}
+	cout << "Name not found in the directory" << endl;
+	/*
+	while (cur!=NULL) {
     
     	if (cur==NULL) {
         	cout << "Empty node";
@@ -149,6 +162,7 @@ void tree::del() {
         	cur=cur->left;
     	}
 	}
+	*/
 }
 
 /*
