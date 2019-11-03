@@ -1,34 +1,35 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
 
-class student {
+class node {
     public:
         char name[50];
-        int id;
+        int regid;
         int ssc;
         int hsc;
         int cet;
-        student* next=NULL;
+        node* next=NULL;
 };
 
-class Wrecord {
+class student {
     public:
-        student *head;
-        Wrecord() {
+        node *head=new node();
+        student() {
             head=NULL;
         }
         
-        student* create();
-        void insert();
+        node* create();
+        node* insert();
+        void display();
+        node* pass();
 };
 
-
-student* Wrecord::create() {
-    student *temp=new student();
-	cout << "Enter Student's name: ";
+node* student::create() {
+    node *temp=new node();
+    cout << "Enter Student's Name: ";
     cin >> temp->name;
     cout << "Enter registeration id: ";
-    cin >> temp->id;
+    cin >> temp->regid;
     cout << "Enter Student's SSC marks: ";
     cin >> temp->ssc;
     cout << "Enter Student's HSC marks: ";
@@ -36,66 +37,76 @@ student* Wrecord::create() {
     cout << "Enter Student's CET marks: ";
     cin >> temp->cet;
     return temp;
-};
+}
 
-void Wrecord::insert() {
-    student *temp=create();
-    student *cur=head;
+node* student::insert() {
+
+    node *temp=create();
     if (head==NULL) {
         head=temp;
     } else {
+        node *cur=head;
         while (cur->next!=NULL) {
             cur=cur->next;
         }
         cur->next=temp;
     }
-};
-    
+    return temp;
+}
+
+void student::display() {
+    node *cur=head;
+    while (cur!=NULL) {
+        cout << "\n";
+        cout << "Name: " << cur->name << endl;
+        cout << "Registeration id: " << cur->regid << endl;
+        cout << "Marks of HSC: " << cur->hsc << endl;
+        cout << "Marks of SSC: " << cur->ssc << endl;
+        cout << "Marks of CET: " << cur->cet << endl;
+        cur=cur->next;
+    }
+}
 
 class department {
     public:
-        student *Dstudent;
+        node *front=new node();
         department() {
-            Dstudent=NULL;
+            front=NULL;
         }
         
-        void add(student *);
-        void search(int);
+        void add(node *);
+        void display();
 };
 
-void department::add(student *temp) {
-    student *cur=Dstudent;
-    if (Dstudent==NULL) {
-        Dstudent=temp;
+void department::add(node *temp) {
+    if (front==NULL) {
+        front=temp;
     } else {
-        while (cur->next!=NULL) {
+        node *cur=front;
+        while(cur->next!=NULL) {
             cur=cur->next;
         }
         cur->next=temp;
     }
 }
 
-void department::search(int id) {
-    student *cur=Dstudent;
-    while (cur!=NULL && cur->id!=id) {
-            cur=cur->next;
-    }
-    cur=cur->next;
-    if (cur->id!=id) {
-        cout << "ID not found!!!";
-    } else {
-        cout << "Name of Student: " << cur->name << endl;
+void department::display() {
+    node *cur=front;
+    while(cur!=NULL) {
+        cout << "\n";
+        cout << "Name: " << cur->name << endl;
+        cout << "Registeration id: " << cur->regid << endl;
         cout << "Marks of HSC: " << cur->hsc << endl;
         cout << "Marks of SSC: " << cur->ssc << endl;
         cout << "Marks of CET: " << cur->cet << endl;
-    };
-};
+        cur=cur->next;
+    }
+}
 
 int main() {
-    
     department mech,etx,comp;
-    Wrecord ll;
-    int key,check,opt,avg;
+    student ll;
+    int key,check,opt,avg,more;
     
     do {
         cout << "\n1.Enter Student data\n2.Search\nEnter your choice: ";
@@ -104,10 +115,8 @@ int main() {
             case 1:
                 do {
                     cout << "Inserting Student list:\n";
-                    ll.insert();
-                    student *cur=NULL;
-                    
-                    avg=(cur->ssc+cur->hsc+cur->cet)/3;
+                    node *cur=ll.insert();
+                    avg=((cur->hsc) + (cur->ssc) + (cur->cet)) /3;
                     if (avg>=90) {
                         cout << "Congratulation.. you got CS." << endl;
                         comp.add(cur);
@@ -122,16 +131,24 @@ int main() {
                     else {
                         cout << "You are not eligible for this college." << endl;
                     }
-                    cout << "Want to insert more press 1\n Enter your choice: ";
-                    cin >>check;
-                } while (check==1);
+                    
+                    cout << "\nInsert more data, press any integer other than 0, Enter ur choice: ";
+                    cin >> more;
+                } while(more!=0);
                 break;
             case 2:
-                cout << "Enter registeration id: ";
+                ll.display();
+                cout << "\nDisplaying Mech students:";
+                mech.display();
+                cout << "\nDisplaying entc students:";
+                etx.display();
+                cout << "\nDisplaying Comp students:";
+                comp.display();
+                /*cout << "Enter registeration id: ";
                 cin >> key;
                 comp.search(key);
                 mech.search(key);
-                etx.search(key);
+                etx.search(key);*/
                 break;
         }
         
