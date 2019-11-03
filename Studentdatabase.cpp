@@ -21,7 +21,6 @@ class student {
         node* create();
         node* insert();
         void display();
-        node* pass();
 };
 
 node* student::create() {
@@ -76,17 +75,17 @@ class department {
         
         void add(node *);
         void display();
+        void search(int);
 };
 
 void department::add(node *temp) {
     if (front==NULL) {
         front=temp;
     } else {
-        node *cur=front;
-        while(cur->next!=NULL) {
-            cur=cur->next;
+        while(front->next!=NULL) {
+            front=front->next;
         }
-        cur->next=temp;
+        front->next=temp;
     }
 }
 
@@ -103,13 +102,32 @@ void department::display() {
     }
 }
 
+void department::search(int key) {
+    int flag=0;
+    node *cur=front;
+    while(front!=NULL) {
+        if (key==cur->regid) {
+            flag=1;
+            cout << "Name: " << cur->name << endl;
+            cout << "Registeration id: " << cur->regid << endl;
+            cout << "Marks of HSC: " << cur->hsc << endl;
+            cout << "Marks of SSC: " << cur->ssc << endl;
+            cout << "Marks of CET: " << cur->cet << endl;
+        }
+        cur=cur->next;
+    }
+    if (flag==0) {
+        cout << "\nStudent not found!!!\n";
+    }
+}
+
 int main() {
     department mech,etx,comp;
     student ll;
-    int key,check,opt,avg,more;
+    int check,opt,avg,more;
     
     do {
-        cout << "\n1.Enter Student data\n2.Search\nEnter your choice: ";
+        cout << "\n1.Enter Student data\n2.Display\n3.Search\nEnter your choice: ";
         cin >>opt;
         switch (opt) {
             case 1:
@@ -118,15 +136,15 @@ int main() {
                     node *cur=ll.insert();
                     avg=((cur->hsc) + (cur->ssc) + (cur->cet)) /3;
                     if (avg>=90) {
-                        cout << "Congratulation.. you got CS." << endl;
                         comp.add(cur);
+                        cout << "Congratulation.. you got CS." << endl;
                     } else if (avg <90 and avg >=80) {
-                        cout << "Congratulation.. you got ETX." << endl;
                         etx.add(cur);
+                        cout << "Congratulation.. you got ETX." << endl;
                     }
                     else if (avg <80 and avg >=70) {
-                        cout << "Congratulation.. you got MECH." << endl;
                         mech.add(cur);
+                        cout << "Congratulation.. you got MECH." << endl;
                     }
                     else {
                         cout << "You are not eligible for this college." << endl;
@@ -137,19 +155,46 @@ int main() {
                 } while(more!=0);
                 break;
             case 2:
-                ll.display();
-                cout << "\nDisplaying Mech students:";
-                mech.display();
-                cout << "\nDisplaying entc students:";
-                etx.display();
-                cout << "\nDisplaying Comp students:";
-                comp.display();
-                /*cout << "Enter registeration id: ";
-                cin >> key;
-                comp.search(key);
-                mech.search(key);
-                etx.search(key);*/
+                cout << "\n1.Display Whole list\n2.Display Mech Students\n3.Display ETX students\n4.Display CS students\nEnter your choice: ";
+                cin >> avg;
+                switch (avg) {
+                    case 1:
+                        ll.display();
+                        break;
+                    case 2:
+                        mech.display();
+                        break;
+                    case 3:
+                        etx.display();
+                        break;
+                    case 4:
+                        comp.display();
+                        break;
+                    default:
+                        cout << "Entered option is invalid!!!";  
+                }
                 break;
+            case 3:
+                cout << "Enter registeration id: ";
+                cin >> more;
+                cout << "\n1.Search in Mech Students\n2.Search in ETX students\n3.Search in CS students\nEnter your choice: ";
+                cin >> avg;
+                switch (avg) {
+                    case 1:
+                        mech.search(more);
+                        break;
+                    case 2:
+                        etx.search(more);
+                        break;
+                    case 3:
+                        comp.search(more);
+                        break;
+                    default:
+                        cout << "Entered option is invalid!!!";  
+                }
+                break;
+            default:
+                cout << "Entered option is invalid!!!";
         }
         
         cout << "If you want to exit, enter 0 else any integer: ";
