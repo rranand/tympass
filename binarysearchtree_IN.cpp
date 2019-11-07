@@ -15,11 +15,14 @@ class bst {
             root=NULL;
         }
         
+        node* pass() {
+            return root;    
+        }
         node* create();
         void insert();
         void display(node *);
-        void deleten(node *,int);
-        node* leastval();
+        void deleten(node *cur,int);
+        node* leastval(node *);
 };
 
 node* bst::create() {
@@ -31,11 +34,12 @@ node* bst::create() {
 
 void bst::insert() {
     node *temp=create();
-    while (true) {
+    int flag=0;
+    while (flag!=1) {
         if (root==NULL) {
             root=temp;
-            break;
-        } else if (val<=root->data) {
+            flag=1;
+        } else if (temp->data<=root->data) {
             root=root->left;
         } else {
             root=root->right;
@@ -45,28 +49,52 @@ void bst::insert() {
 
 void bst::display(node *cur) {
     if (cur==NULL) return;
-    diplay(cur->left);
+    display(cur->left);
     cout << cur->data <<endl;
     display(cur->right);
 }
 
-node* bst::leastval() {
-    node *cur=root;
+node* bst::leastval(node *cur) {
     while (cur->left!=NULL) {
         cur=cur->left;
     }
     return cur;
 }
 
-void deleten(node *cur,int val) {
-    if (cur==NULL) return;
-    else if (val<cur->left) cur->left=deleten(cur->left,val);
-    else if (val>cur->right) cur->right=deleten(cur->right,val);
-    else {
-        
+/*void deleten(node *cur,int val) {
+    if (cur==NULL) {
+        return;
+    } else if (val<cur->left) {
+        cur->left=deleten(cur->left,val);
+    } else if (val>cur->right) {
+        cur->right=deleten(cur->right,val);
+    } else {
+        if (cur->left==NULL and cur->right==NULL) {
+            delete cur;
+            cur=NULL;
+        } else if(cur->left==NULL) {
+            node *temp=cur;
+            cur=cur->right;
+            delete temp;
+        } else if(cur->right==NULL) {
+            node *temp=cur;
+            cur=cur->left;
+            delete temp;
+        } else {
+            node *temp=leastval(cur->right);
+            cur->data=temp->right;
+            cur->right=deleten(cur->data,temp->data);
+        }
     }
-}
+}*/
+
 int main() {
-    
+    bst ll;
+    ll.insert();
+    ll.insert();
+    ll.insert();
+    ll.insert();
+    ll.insert();
+    ll.display(ll.pass());
+    return 0;
 }
-    
