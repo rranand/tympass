@@ -10,11 +10,17 @@ struct info {
 	int roll;
 };
 
-info *two_union(info arr1[size], info arr2[size], int size1, int size2) {
-    cout << "Taking union of A and B:" << endl;
+class pass_it {
+  public:
+    int count;
+    info* arr= new info[size];
+};
+
+pass_it* two_union(info *arr1, info *arr2, int size1, int size2) {
+    cout << "Taking union:" << endl;
 	int flag=0;
 	int count=0;
-	static info arr3[size];
+	info* arr3 = new info[size];
 	for (int i=0;i<size1; i++) {
 		arr3[count] = arr1[i];
 		count++;			
@@ -22,7 +28,7 @@ info *two_union(info arr1[size], info arr2[size], int size1, int size2) {
 
 	for (int i=count; i< size1+size2;i++) {
 		for (int j=0; j< size1;j++) {
-			if (arr1[j].roll == arr3[i-size1].roll) {
+			if (arr1[j].roll == arr2[i-size1].roll) {
                 flag=1;
 		        break;
             }
@@ -33,23 +39,26 @@ info *two_union(info arr1[size], info arr2[size], int size1, int size2) {
     	}		
     	flag=0;		
 	}
-    cout << "Elements are : "; 
+    cout << "Elements are : " << endl; 
 	for (int i=0; i<count; i++) {
 		cout << "Name: " << arr3[i].name << "----- Roll:" << arr3[i].roll << endl;
 		cout << "--------------------------" << endl;
 	}
 	cout << endl;
-	return arr3;
+  pass_it *pass;
+  pass->count = count;
+  pass->arr= arr3;
+	return pass;
 }
 
-
-info *three_union(info arr1[size], info arr2[size], info arr3[size], int size1, int size2, int size3) {
-	cout << "Taking union of A, B and C:" << endl;
+/*
+info* three_union(info *arr1, info *arr2, info *arr3, int size1, int size2, int size3) {
+	cout << "Taking union:" << endl;
 	int size5,size6;
 	info *arr5 = two_union(arr1,arr2,size1,size2);
 	info *arr6 = two_union(arr2,arr3,size2,size3);
 	int flag=0, count=0;
-	static info arr4[size];
+	info* arr4 = new info[size];
 	for (int i=0;i<size5; i++) {
 		arr4[count] = arr5[i];
 		count++;			
@@ -67,20 +76,20 @@ info *three_union(info arr1[size], info arr2[size], info arr3[size], int size1, 
 		}
 		flag=0;
 	}
-	cout << "Elements are : "; 
+	cout << "Elements are : " << endl; 
 	for (int i=0; i<count; i++) {
 		cout << "Name: " << arr4[i].name << "----- Roll:" << arr4[i].roll << endl;
 		cout << "--------------------------" << endl;	
 	}
 	cout << endl;
 	return arr4;
-}
+}*/
 
 
-info *two_intersection(info arr1[size], info arr2[size], int size1, int size2) {
-	cout << "Taking intersection of A and B:" << endl;
+pass_it* two_intersection(info *arr1, info *arr2, int size1, int size2) {
+	cout << "Taking intersection:" << endl;
 	int flag=0,count=0;
-	static info arr3[size];
+	info* arr3 = new info[size];
 	for (int i=0; i< size1; i++) {
 		for (int j=0; j< size2; j++) {
 			if (arr1[i].roll == arr2[j].roll) {
@@ -94,20 +103,23 @@ info *two_intersection(info arr1[size], info arr2[size], int size1, int size2) {
 			count++;
 		}
 	}
-	cout << "Elements are : "; 
+	cout << "Elements are : " << endl; 
 	for (int i=0; i<count; i++) {
 		cout << "Name: " << arr3[i].name << "----- Roll:" << arr3[i].roll << endl;
 		cout << "--------------------------" << endl;		
 	}
 	cout << endl;
-	return arr3;
+	pass_it *pass;
+  pass->count = count;
+  pass->arr= arr3;
+	return pass;
 }
 
 
-info *three_intersection(info arr1[size], info arr2[size], info arr3[size], int size1, int size2, int size3) {
-	cout << "Taking intersection of A, B and C:" << endl;
+int three_intersection(info *arr1, info *arr2, info *arr3, int size1, int size2, int size3) {
+	cout << "Taking intersection:" << endl;
 	int flag=0,count=0;
-	static info arr4[size];
+	info* arr4 = new info[size];
 	for (int i=0; i< size1; i++) {
 		for (int j=0; j< size2; j++) {
 			for (int k=0; k< size3; k++) {
@@ -122,20 +134,20 @@ info *three_intersection(info arr1[size], info arr2[size], info arr3[size], int 
 			flag=0;
 			count++;
 		}
-	}
-	cout << "Elements are : "; 
+	}/*
+	cout << "Elements are : " << endl; 
 	for (int i=0; i<count; i++) {
 		cout << "Name: " << arr4[i].name << "----- Roll:" << arr4[i].roll << endl;
 		cout << "--------------------------" << endl;		
 	}
-	cout << endl;
-	return arr4;
+	cout << endl;*/
+	return count;
 }
 
 
-info *give_input(int num) {
+info* give_input(int num) {
 	cout << "Enter Details of students:" << endl;
-	static info arr[size];
+	info* arr = new info[size];
 	for (int i=0; i<num;i++) {
 		cout << "Enter name: ";
 		cin >> arr[i].name;
@@ -143,22 +155,34 @@ info *give_input(int num) {
 		cin >> arr[i].roll;
 	}
 	return arr;
-}
-
-
-void give_output(int num, info *cleared) {
-	cout << "Entered Details of students:" << endl;
-	for (int i=0; i<num;i++) {
-		cout << "Name: " << cleared[i].name << "----- Roll:" << cleared[i].roll << endl;
-		cout << "--------------------------" << endl;		
-	}
+	
 }
 
 int main() {
-	int num;
-	cout << "Enter number of students: ";
-	cin >> num;
-	info *cleared=give_input(num);
-	give_output(num, cleared);
-    	return 0;
+	int num_cleared_hr, num_cleared_tech, num_cleared_vc;
+	
+	cout << "Enter number of students who cleared HR round: ";
+	cin >> num_cleared_hr;
+	info *cleared_hr=give_input(num_cleared_hr);
+	
+	cout << "Enter number of students who cleared technical round: ";
+	cin >> num_cleared_tech;
+	info *cleared_tech=give_input(num_cleared_tech);
+
+	cout << "Enter number of students who cleared VC round: ";
+	cin >> num_cleared_vc;
+	info *cleared_vc=give_input(num_cleared_vc);
+	
+	pass_it *uni_ab=two_union(cleared_hr, cleared_tech, num_cleared_hr, num_cleared_tech);
+	pass_it *uni_bc=two_union(cleared_hr, cleared_vc, num_cleared_hr, num_cleared_vc);
+	pass_it *uni_ca=two_union(cleared_vc, cleared_tech, num_cleared_vc, num_cleared_tech);
+	
+	pass_it *int_ab=two_intersection(cleared_hr, cleared_tech, num_cleared_hr, num_cleared_tech);
+	pass_it *int_bc=two_intersection(cleared_hr, cleared_vc, num_cleared_hr, num_cleared_vc);
+	pass_it *int_ca=two_intersection(cleared_vc, cleared_tech, num_cleared_vc, num_cleared_tech);
+	cout << endl;
+
+  cout << "No. of elements in all set: " <<  num_cleared_hr+num_cleared_tech +num_cleared_vc-(int_ab->count+ int_bc->count+ int_ca->count- three_intersection(int_ab->arr, int_bc->arr, int_ca->arr, int_ab->count, int_bc->count, int_ca->count)) << endl;
+
+	return 0;
 }
