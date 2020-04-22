@@ -27,7 +27,7 @@ int main() {
       if (distance[currentV][i]==0) {
         continue;
       }
-      if (distance[currentV][i]<tempMax && visited[i]==0) {
+      if (distance[currentV][i]<tempMax) {
         tempMax = distance[currentV][i];
         temp= i;
       }
