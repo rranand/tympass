@@ -1,0 +1,56 @@
+possiblePath= [(0, 1) ,(0, -1) ,(1, 0) ,(-1, 0)]
+dire = ['E', 'W', 'S', 'N']
+travel = ''
+def limit(x,y):
+    global r,c
+    
+    if 0<=x<r and 0<=y<c:
+        return True
+    return False
+
+
+def solveMap(arr, visited, x, y, path=''):
+    global possiblePath, dire, travel
+    x, y = int(x), int(y)
+    visited[x][y] = True
+    
+    for i,j in enumerate(possiblePath):
+        if limit(x + j[0],y + j[1]):    
+            if arr[x + j[0]][y + j[1]]=='*':
+                travel = path[:] + dire[i]
+            
+            if arr[x + j[0]][y + j[1]]=='.' and not visited[x + j[0]][y + j[1]]:
+                solveMap(arr, visited,x + j[0], y + j[1], path + dire[i])
+
+
+def DFS(arr, l, pos):
+    visited= [[False for i in range(l[1])] for i in range(l[0])]
+    solveMap(arr, visited, *pos)
+
+def key_calu(path, real='0'):
+    print(path)
+    for i in path:
+        if real[-1] != i:
+            real+= i
+    print(real[1:])
+    return len(real[1:])
+
+
+t = int(input())
+for i in range(t):
+    r,c  = list(map(int, input().split()))
+    nm = []
+    for i in range(r):
+        z= list(input())
+        nm.append(z)
+        if 'M' in z:
+            tr = i
+            tc = z.index('M')
+    key = int(input())
+    DFS(nm, (r, c), (tr,tc))
+    if key == key_calu(travel):
+        print('Impressed')
+    else:
+        print('Oops!')
+    travel = ''
+    
