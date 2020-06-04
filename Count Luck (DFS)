@@ -27,14 +27,37 @@ def DFS(arr, l, pos):
     visited= [[False for i in range(l[1])] for i in range(l[0])]
     solveMap(arr, visited, *pos)
 
-def key_calu(path, real='0'):
-    print(path)
+def key_calu(arr, path, key, loc):
+    global possiblePath, dire
+    x , y = loc[0], loc[1]
+    b =-1
     for i in path:
-        if real[-1] != i:
-            real+= i
-    print(real[1:])
-    return len(real[1:])
-
+        count = 0
+        j = possiblePath[dire.index(i)]
+        for k in range(4):
+            if k!=b and limit(x + possiblePath[k][0],y + possiblePath[k][1]):
+                if arr[x + possiblePath[k][0]][y + possiblePath[k][1]]=='.' or arr[x + possiblePath[k][0]][y + possiblePath[k][1]]=='*':
+                    count+=1
+        x +=j[0]
+        y +=j[1]
+        b= dire.index(i)
+        if b==0:
+            b=1
+        elif b==1:
+            b=0
+        elif b==2:
+            b=3
+        elif b==3:
+            b=2
+        if count>1:
+            key -=1
+        if key < 0:
+            print('Oops!')
+            return 0
+    if key==0:
+        print('Impressed')
+    else:
+        print('Oops!')
 
 t = int(input())
 for i in range(t):
@@ -48,9 +71,6 @@ for i in range(t):
             tc = z.index('M')
     key = int(input())
     DFS(nm, (r, c), (tr,tc))
-    if key == key_calu(travel):
-        print('Impressed')
-    else:
-        print('Oops!')
+    key_calu(nm, travel, key, (tr,tc))
     travel = ''
     
