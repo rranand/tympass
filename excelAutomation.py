@@ -1,3 +1,9 @@
+'''
+Run this command
+python3 excelAutomation.py sampleData.xlsx
+'''
+
+
 import openpyxl
 import pandas as pd
 import sys
