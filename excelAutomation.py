@@ -12,14 +12,22 @@ from datetime import date
 
 #path = input("Enter Path: ")
 path = sys.argv[1]
+otherFile = sys.argv[2]
 
 try:
     wbObj = openpyxl.load_workbook(path)
 except IOError:
-    print('No File Found')
+    print('First File Not Found')
     exit(0)
 
-sheet = wbObj[wbObj.active.title]
+otherFileFound = True
+try:
+    wbObj_Other = pd.read_excel(otherFile, engine='openpyxl')
+except IOError:
+    otherFileFound = False
+    print('Second File Not Found')
+
+sheet = wbObj.active
 
 arr = []
 for i in sheet.iter_rows(min_row=2, values_only=True):
@@ -96,7 +104,20 @@ df.drop(columns=['copy_Assigned To'], inplace=True)
 
 fileName = "".join(path.split(".")[:-1])
 
+if otherFileFound:
+    wbObj_Other['copy_Assigned To'] = wbObj_Other.loc[:, 'Assigned To']
+    pvTableNotUpdateAssociate = wbObj_Other.pivot_table(index='Assigned To', columns='Status', values='copy_Assigned To', aggfunc='count', margins=True, margins_name='Grand Total')
+    wbObj_Other.drop(columns=['copy_Assigned To'], inplace=True) 
+
+
 with pd.ExcelWriter(fileName+"_output.xlsx") as writer:
     df.to_excel(writer, sheet_name="Raw Sheet")
     pvTable.to_excel(writer, sheet_name="Pivot", startrow=2)
     pvTableAssociate.to_excel(writer, sheet_name="Associate", startrow=2)
+
+    if otherFileFound:
+        wbObj_Other.to_excel(writer, sheet_name="Not Updated Raw")
+        pvTableNotUpdateAssociate.to_excel(writer, sheet_name="Not Update Associate", startrow=2)
+        
+
+print("File Generated Successfully: "+fileName+"_output.xlsx")
