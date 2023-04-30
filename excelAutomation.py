@@ -69,13 +69,13 @@ for i in range(2, sheet.max_row+1):
     else:
         if diff <= 2:
             sheet.cell(i, col_mx_value).value = "0-2 days"
-        elif diff <= 4:
+        elif diff <= 5:
             sheet.cell(i, col_mx_value).value = "2-4 days"
-        elif diff <= 10:
+        elif diff <= 11:
             sheet.cell(i, col_mx_value).value = "5-10 days"
-        elif diff <= 20:
+        elif diff <= 21:
             sheet.cell(i, col_mx_value).value = "11-20 days"
-        elif diff <= 30:
+        elif diff <= 31:
             sheet.cell(i, col_mx_value).value = "21-30 days"
         else:
             sheet.cell(i, col_mx_value).value = "More than 30 days"
