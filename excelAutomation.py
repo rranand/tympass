@@ -41,19 +41,20 @@ today = date.today()
 
 for i in range(2, sheet.max_row+1):
     cellDateTime = sheet.cell(i, 2).value
-    diff = (today - date(cellDateTime.year, cellDateTime.month, cellDateTime.day)).days
-    weekDay = today.weekday
-#24
+    shellDate = date(cellDateTime.year, cellDateTime.month, cellDateTime.day)
+    diff = (today - shellDate).days
+    weekDay = today.weekday()
+
     if weekDay == 0:
-        if diff <= 6:
+        if diff <= 4:
             sheet.cell(i, col_mx_value).value = "0-2 days"
-        elif diff <= 8:
+        elif diff <= 7:
             sheet.cell(i, col_mx_value).value = "2-4 days"
-        elif diff <= 17:
+        elif diff <= 13:
             sheet.cell(i, col_mx_value).value = "5-10 days"
-        elif diff <= 27:
+        elif diff <= 23:
             sheet.cell(i, col_mx_value).value = "11-20 days"
-        elif diff <= 37:
+        elif diff <= 33:
             sheet.cell(i, col_mx_value).value = "21-30 days"
         else:
             sheet.cell(i, col_mx_value).value = "More than 30 days"
