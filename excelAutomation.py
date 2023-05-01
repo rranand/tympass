@@ -1,6 +1,6 @@
 '''
 Run this command
-python3 excelAutomation.py sampleData.xlsx
+python3 excelAutomation.py sampleData.xlsx otherSampleData.xlsx
 '''
 
 
